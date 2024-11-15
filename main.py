@@ -12,7 +12,7 @@ This is main file that runs the search engine.
 ***************************************
 """
 
-import pa_search_engine as pa 
+from src import pa_search_engine as pa
 from timeit import default_timer as timer
 
 #%%----------------------------------------------------------------------------
