@@ -109,22 +109,19 @@ class MyTestCase(unittest.TestCase):
 
         self.index_updater.update_inv_doc_freq(inv_doc_freq, invert_index, total_docs)
 
-        expected_inv_doc_freq = {"hee": 1/3, "hi": 2/3, "how": 3/3}
+        expected_inv_doc_freq = {"hee": 1 / 3, "hi": 2 / 3, "how": 3 / 3}
         self.assertEqual(inv_doc_freq, expected_inv_doc_freq)
 
     def test_update_doc_rank(self):
         doc_name: str = "creeper_aw_man.mc"
         doc2_name: str = "ay.yai"
         doc_word_counts: dict[str, int] = {doc_name: 99, doc2_name: 108}
-        doc_rank: dict[str, float] = {doc2_name: 1/108}
+        doc_rank: dict[str, float] = {doc2_name: 1 / 108}
 
         self.index_updater.update_doc_rank(doc_rank, doc_word_counts, doc_name)
 
-        expected_doc_rank: dict[str, float] = {doc_name: 1/99, doc2_name: 1/108}
+        expected_doc_rank: dict[str, float] = {doc_name: 1 / 99, doc2_name: 1 / 108}
         self.assertEqual(doc_rank, expected_doc_rank)
-
-
-
 
 
 if __name__ == '__main__':
