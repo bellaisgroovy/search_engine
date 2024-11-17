@@ -102,6 +102,15 @@ class MyTestCase(unittest.TestCase):
                                                                       "doctor": 0.2}}
         self.assertEqual(term_freq, expected_term_freq)
 
+    def test_update_inv_doc_freq(self):
+        inv_doc_freq: dict[str, float] = {}
+        invert_index: dict[str, set[str]] = {"hee": {"doc1"}, "hi": {"doc1", "doc2"}, "how": {"doc1", "doc2", "doc3"}}
+        total_docs: int = 3
+
+        self.index_updater.update_inv_doc_freq(inv_doc_freq, invert_index, total_docs)
+
+        expected_inv_doc_freq = {"hee": 1/3, "hi": 2/3, "how": 3/3}
+        self.assertEqual(inv_doc_freq, expected_inv_doc_freq)
 
 
 

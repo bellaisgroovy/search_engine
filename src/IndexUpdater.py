@@ -29,6 +29,16 @@ class IndexUpdater:
             single_term_freq: float = word_occurrences.get(word)/word_count
             term_freq[doc_name][word] = single_term_freq
 
+    def update_inv_doc_freq(self,
+                            inv_doc_freq: dict[str, float],
+                            invert_index: dict[str, set[str]],
+                            total_docs: int):
+
+        for word in invert_index.keys():
+            single_inv_doc_freq = len(invert_index.get(word)) / total_docs
+            inv_doc_freq[word] = single_inv_doc_freq
+
+
 if __name__ == "__main__":
     x: float = 2/5
     y: float = 1/5
