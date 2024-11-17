@@ -38,6 +38,9 @@ class IndexUpdater:
             single_inv_doc_freq = len(invert_index.get(word)) / total_docs
             inv_doc_freq[word] = single_inv_doc_freq
 
+    def update_doc_rank(self, doc_rank: dict[str, float], doc_word_counts: dict[str, int], doc_name: str):
+        doc_rank[doc_name] = 1 / doc_word_counts[doc_name]
+
 
 if __name__ == "__main__":
     x: float = 2/5
