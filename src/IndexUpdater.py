@@ -1,4 +1,4 @@
-def _add_to_or_create_set_entry(d: dict[str, set], index: str, new_item: str):
+def _add_item_to_dict(d: dict[str, set], index: str, new_item: str):
     if d.get(index) is None:
         d[index] = {new_item}
     else:
@@ -12,10 +12,10 @@ def _create_entry_if_empty(d: dict, index, new_item):
 
 class IndexUpdater:
     def update_forward_index(self, forward_index: dict[str, set[str]], doc_name: str, word: str):
-        _add_to_or_create_set_entry(forward_index, doc_name, word)
+        _add_item_to_dict(forward_index, index=doc_name, new_item=word)
 
     def update_invert_index(self, invert_index: dict[str, set[str]], word: str, doc_name: str):
-        _add_to_or_create_set_entry(invert_index, word, doc_name)
+        _add_item_to_dict(invert_index, index=word, new_item=doc_name)
 
     def update_term_freq(self,
                          term_freq: dict[str: dict[str, float]],
@@ -23,10 +23,10 @@ class IndexUpdater:
                          word_count: int,
                          doc_name: str):
 
-        _create_entry_if_empty(term_freq, doc_name, {})
+        _create_entry_if_empty(term_freq, index=doc_name, new_item={})
 
         for word in word_occurrences.keys():
-            single_term_freq: float = word_occurrences.get(word)/word_count
+            single_term_freq: float = word_occurrences.get(word) / word_count
             term_freq[doc_name][word] = single_term_freq
 
     def update_inv_doc_freq(self,
