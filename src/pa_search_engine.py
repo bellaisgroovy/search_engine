@@ -11,7 +11,7 @@ SOME FUNCTIONS OR THEIR SKELETONS HAVE BEEN PROVIDED
 HOWEVER, YOU ARE FREE TO MAKE ANY CHANGES YOU WANT IN THIS FILE
 AS LONG AS IT REMAINS COMPATIBLE WITH main.py and tester.py
 """
-from SearchEngine import SearchEngine
+from src.SearchEngine import SearchEngine
 
 _search_engine: SearchEngine = SearchEngine()
 
