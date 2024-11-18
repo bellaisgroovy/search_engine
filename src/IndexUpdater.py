@@ -18,7 +18,7 @@ class IndexUpdater:
         _add_item_to_dict(invert_index, index=word, new_item=doc_name)
 
     def update_term_freq(self,
-                         term_freq: dict[str: dict[str, float]],
+                         term_freq: dict[str, dict[str, float]],
                          word_occurrences: dict[str, int],
                          word_count: int,
                          doc_name: str):
