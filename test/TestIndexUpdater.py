@@ -115,12 +115,12 @@ class MyTestCase(unittest.TestCase):
     def test_update_doc_rank(self):
         doc_name: str = "creeper_aw_man.mc"
         doc2_name: str = "ay.yai"
-        doc_word_counts: dict[str, int] = {doc_name: 99, doc2_name: 108}
-        doc_rank: dict[str, float] = {doc2_name: 1 / 108}
+        word_count: int = 108
+        doc_rank: dict[str, float] = {doc2_name: 1/99}
 
-        self.index_updater.update_doc_rank(doc_rank, doc_word_counts, doc_name)
+        self.index_updater.update_doc_rank(doc_rank, word_count, doc_name)
 
-        expected_doc_rank: dict[str, float] = {doc_name: 1 / 99, doc2_name: 1 / 108}
+        expected_doc_rank: dict[str, float] = {doc_name: 1 / 108, doc2_name: 1 / 99}
         self.assertEqual(doc_rank, expected_doc_rank)
 
 

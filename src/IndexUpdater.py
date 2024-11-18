@@ -20,7 +20,7 @@ class IndexUpdater:
     def update_term_freq(self,
                          term_freq: dict[str, dict[str, float]],
                          word_occurrences: dict[str, int],
-                         word_count: int,
+                         word_count: int,  # unclear if this is to be unique word count or actual word count
                          doc_name: str):
 
         _create_entry_if_empty(term_freq, index=doc_name, new_item={})
@@ -38,5 +38,5 @@ class IndexUpdater:
             single_inv_doc_freq = len(invert_index.get(word)) / total_docs
             inv_doc_freq[word] = single_inv_doc_freq
 
-    def update_doc_rank(self, doc_rank: dict[str, float], doc_word_counts: dict[str, int], doc_name: str):
-        doc_rank[doc_name] = 1 / doc_word_counts[doc_name]
+    def update_doc_rank(self, doc_rank: dict[str, float], word_count: int, doc_name: str):
+        doc_rank[doc_name] = 1 / word_count
