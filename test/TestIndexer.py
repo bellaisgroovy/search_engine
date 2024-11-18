@@ -3,10 +3,10 @@ import os
 from src.Indexer import Indexer
 
 TESTING1212: str = "testing1212.txt"
-TESTING1212_PATH: str = os.path.join("search_dir", TESTING1212)
+TESTING1212_PATH: str = os.path.join("test_search_dir", TESTING1212)
 
 CHILLI: str = "chilli.txt"
-CHILLI_PATH: str = os.path.join("search_dir", CHILLI)
+CHILLI_PATH: str = os.path.join("test_search_dir", CHILLI)
 
 post_testing_forward_index: dict[str, set[str]] = {
     TESTING1212: {"high", "low", "dog", "cat", "man", "bat", "tree", "log"}}

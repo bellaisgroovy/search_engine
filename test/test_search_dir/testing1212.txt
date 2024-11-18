@@ -1,0 +1,8 @@
+high high high
+low low low
+dog
+cat cat cat cat
+man man
+bat
+tree tree
+log log log log log log
