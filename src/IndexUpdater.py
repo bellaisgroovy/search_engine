@@ -6,8 +6,7 @@ def _add_item_to_dict(d: dict[str, set], index: str, new_item: str):
 
 
 def _create_entry_if_empty(d: dict, index, new_item):
-    if d.get(index) is None:
-        d[index] = new_item
+    d[index] = d.get(index) or new_item
 
 
 class IndexUpdater:
