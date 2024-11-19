@@ -125,11 +125,14 @@ class SearchEngine:
             folder)
 
         if cached_forward_index is not None:
+
             forward_index.update(cached_forward_index)
             invert_index.update(cached_invert_index)
             term_freq.update(cached_term_freq)
             inv_doc_freq.update(cached_inv_doc_freq)
             doc_rank.update(cached_doc_rank)
+
             return True
+
         else:
             return False

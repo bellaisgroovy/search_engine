@@ -21,6 +21,7 @@ class Cacher:
               doc_rank: dict[str, float]):
 
         dir_to_dump_in = os.path.join(self.cache_path, folder)
+
         if not os.path.exists(dir_to_dump_in):
             os.makedirs(dir_to_dump_in)
 
@@ -31,6 +32,7 @@ class Cacher:
         self._dump(folder, _doc_rank_path, doc_rank)
 
     def load(self, folder: str):
+
         try:
             forward_index: dict[str, set[str]] = self._load(folder, _forward_index_path)
             invert_index: dict[str, set[str]] = self._load(folder, _invert_index_path)
@@ -39,19 +41,29 @@ class Cacher:
             doc_rank: dict[str, float] = self._load(folder, _doc_rank_path)
 
             print(f"{folder} has been crawled before, using cached indices")
+
             return forward_index, invert_index, term_freq, inv_doc_freq, doc_rank
+
         except FileNotFoundError:
+
             print(f"{folder} has not been crawled before")
+
             return None, None, None, None, None
 
     def _dump(self, folder: str, filename: str, obj):
+
         path_to_dump_at = os.path.join(self.cache_path, folder, filename)
+
         with open(path_to_dump_at, "wb") as f:
+
             pickle.dump(obj, f)
 
     def _load(self, folder: str, filename: str):
+
         path_to_load_from = os.path.join(self.cache_path, folder, filename)
+
         with open(path_to_load_from, "rb") as f:
+
             obj = pickle.load(f)
 
             return obj
