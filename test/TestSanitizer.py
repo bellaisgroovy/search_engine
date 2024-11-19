@@ -19,8 +19,9 @@ class TestSanitizer(unittest.TestCase):
         self.assertEqual(["i", "declare", "the", "eeee", "wo", "hooo", "a", "to"], actual_line)
 
     def test_removes_only_leading_trailing_special_chars(self):
-        actual_line = self.sanitizer.parse_line(
-            "~`!@#$%^&*()_-+={}[]|:;'<>,.?/ ..._&*()__...anna_kerenina.txt...___()_-+={}[]|:;'<>,.?  )_-+=")
+        actual_line = self.sanitizer.parse_line("""
+        ~`!@#$%^&*()_-+={}[]|:;'<>,.?/ ..._&*()__...anna_kerenina.txt...___()_-+={}[]|:;'<>,.?  )_-+="
+        """)
         self.assertEqual(["anna_kerenina.txt"], actual_line)
 
     def test_returns_list(self):

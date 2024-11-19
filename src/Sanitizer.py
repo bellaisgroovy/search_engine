@@ -1,8 +1,11 @@
-import string
+_SPECIAL_CHARS = """
+~`!@#$%^&*()_-+={}[]|:;'<>,./?"
+"""
 
 
 def _strip_special_chars(line: str):
-    token = line.strip("~`!@#$%^&*()_-+={}[]|:;'<>,.?/")
+    token = line.strip(_SPECIAL_CHARS)
+
     return token
 
 
@@ -57,7 +60,3 @@ class Sanitizer:
         no_empty_words: list[str] = _remove_empty_words(stripped_list)
 
         return no_empty_words
-
-
-if __name__ == "__main__":
-    print(string.printable)
