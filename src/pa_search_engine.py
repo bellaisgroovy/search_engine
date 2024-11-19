@@ -18,12 +18,23 @@ _search_engine: SearchEngine = SearchEngine()
 
 # %%----------------------------------------------------------------------------
 def dict_to_file(di, fi):
-    _search_engine.dict_to_file(di, fi)
+    with open(fi, "w") as f:
+        for key, value in di.items():
+            f.write("%s:%s\n" % (key, value))
 
 
 # %%----------------------------------------------------------------------------
 def print_result(result):
-    _search_engine.print_result(result)
+    """
+            Print result (all docs with non-zero weights)
+            """
+    print("# Search Results:")
+    count = 0
+    for val in result:
+        if val[1] > 0:
+            print(val[0])
+            count += 1
+    print(count, " results returned")
 
 
 # %%----------------------------------------------------------------------------

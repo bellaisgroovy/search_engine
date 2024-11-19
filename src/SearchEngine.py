@@ -5,6 +5,9 @@ from src.Scale import Scale
 
 
 def _fill_keys_with(keys: list[str], value: float):
+    """
+    returns dictionary with all keys specified filled with value specified
+    """
     result: dict[str, float] = {}
     for key in keys:
         result[key] = value
@@ -12,6 +15,9 @@ def _fill_keys_with(keys: list[str], value: float):
 
 
 def _find_docs_present(search_phrase: list[str], invert_index: dict[str, set[str]]):
+    """
+    returns all document names where all words in search_phrase are present
+    """
     docs_present: set[str] = invert_index.get(search_phrase[0]) or {}
 
     for word in search_phrase[1:]:
@@ -22,6 +28,9 @@ def _find_docs_present(search_phrase: list[str], invert_index: dict[str, set[str
 
 
 def _dict_to_list(d: dict):
+    """
+    converts a dictionary to a list of key-value tuples
+    """
     result_tuples: list[tuple[str, float]] = []
 
     for key in d.keys():
@@ -52,11 +61,6 @@ class SearchEngine:
         # where inv_doc_freq = number of documents with the word / total number of documents
         for word in invert_index.keys():
             inv_doc_freq[word] = len(invert_index[word]) / total_docs
-
-    def dict_to_file(self, di, fi):
-        with open(fi, "w") as f:
-            for key, value in di.items():
-                f.write("%s:%s\n" % (key, value))
 
     def search(self,
                search_phrase: str,
@@ -93,15 +97,3 @@ class SearchEngine:
 
         sorted_result = sorted(result_tuples, key=lambda pair: pair[1], reverse=True)
         return sorted_result
-
-    def print_result(self, result):
-        """
-        Print result (all docs with non-zero weights)
-        """
-        print("# Search Results:")
-        count = 0
-        for val in result:
-            if val[1] > 0:
-                print(val[0])
-                count += 1
-        print(count, " results returned")
