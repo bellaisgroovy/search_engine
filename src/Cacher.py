@@ -38,10 +38,10 @@ class Cacher:
             inv_doc_freq: dict[str, float] = self._load(folder, _inv_doc_freq_path)
             doc_rank: dict[str, float] = self._load(folder, _doc_rank_path)
 
-            print("directory has been cached")
+            print(f"{folder} has been crawled before, using cached indices")
             return forward_index, invert_index, term_freq, inv_doc_freq, doc_rank
         except FileNotFoundError:
-            print("directory has not been cached")
+            print(f"{folder} has not been crawled before")
             return None, None, None, None, None
 
     def _dump(self, folder: str, filename: str, obj):
