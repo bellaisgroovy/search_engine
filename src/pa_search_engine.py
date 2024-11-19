@@ -12,8 +12,11 @@ HOWEVER, YOU ARE FREE TO MAKE ANY CHANGES YOU WANT IN THIS FILE
 AS LONG AS IT REMAINS COMPATIBLE WITH main.py and tester.py
 """
 from src.SearchEngine import SearchEngine
+from src.Cacher import Cacher
 
-_search_engine: SearchEngine = SearchEngine()
+_cache_path = "cache"
+_cacher: Cacher = Cacher(_cache_path)
+_search_engine: SearchEngine = SearchEngine(_cacher)
 
 
 # %%----------------------------------------------------------------------------
