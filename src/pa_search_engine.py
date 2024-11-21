@@ -12,11 +12,8 @@ HOWEVER, YOU ARE FREE TO MAKE ANY CHANGES YOU WANT IN THIS FILE
 AS LONG AS IT REMAINS COMPATIBLE WITH main.py and tester.py
 """
 from src.SearchEngine import SearchEngine
-from src.Cache import Cache
 
-_cache_path = "cache"
-_cacher: Cache = Cache(_cache_path)
-_search_engine: SearchEngine = SearchEngine(_cacher)
+_search_engine: SearchEngine = SearchEngine()
 
 
 # %%----------------------------------------------------------------------------
@@ -41,9 +38,7 @@ def print_result(result):
 
 
 # %%----------------------------------------------------------------------------
-def crawl_folder(folder, forward_index, invert_index, term_freq, inv_doc_freq, doc_rank):
-    _search_engine.crawl_folder(folder, forward_index, invert_index, term_freq, inv_doc_freq, doc_rank)
-
+from src.Crawling import crawl_folder
 
 # %%----------------------------------------------------------------------------
 def search(search_phrase, forward_index, invert_index, term_freq, inv_doc_freq, doc_rank):
