@@ -1,6 +1,6 @@
 import unittest
 import os
-from src.Indexer import Indexer
+from src.Indexer import index_file
 
 TESTING1212: str = "testing1212.txt"
 TESTING1212_PATH: str = os.path.join("test_search_dir", TESTING1212)
@@ -30,21 +30,18 @@ post_testing_doc_rank: dict[str, float] = {TESTING1212: 1 / 22}
 
 
 class TestIndexer(unittest.TestCase):
-    def setUp(self):
-        self.indexer = Indexer()
-
     def test_index_file_first_file(self):
         forward_index: dict[str, set[str]] = {}
         invert_index: dict[str, set[str]] = {}
         term_freq: dict[str, dict[str, float]] = {}
         doc_rank: dict[str, float] = {}
 
-        self.indexer.index_file(filename=TESTING1212,
-                                filepath=TESTING1212_PATH,
-                                forward_index=forward_index,
-                                invert_index=invert_index,
-                                term_freq=term_freq,
-                                doc_rank=doc_rank)
+        index_file(filename=TESTING1212,
+                   filepath=TESTING1212_PATH,
+                   forward_index=forward_index,
+                   invert_index=invert_index,
+                   term_freq=term_freq,
+                   doc_rank=doc_rank)
 
         self.assertEqual(forward_index, post_testing_forward_index)
         self.assertEqual(invert_index, post_testing_invert_index)
@@ -57,12 +54,12 @@ class TestIndexer(unittest.TestCase):
         term_freq = post_testing_term_freq
         doc_rank = post_testing_doc_rank
 
-        self.indexer.index_file(filename=CHILLI,
-                                filepath=CHILLI_PATH,
-                                forward_index=forward_index,
-                                invert_index=invert_index,
-                                term_freq=term_freq,
-                                doc_rank=doc_rank)
+        index_file(filename=CHILLI,
+                   filepath=CHILLI_PATH,
+                   forward_index=forward_index,
+                   invert_index=invert_index,
+                   term_freq=term_freq,
+                   doc_rank=doc_rank)
 
         expected_forward_index: dict[str, set[str]] = {
             TESTING1212: {"high", "low", "dog", "cat", "man", "bat", "tree", "log"},

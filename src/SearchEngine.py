@@ -1,5 +1,5 @@
 import os
-from src.Indexer import Indexer
+from src.Indexer import index_file
 from src.Sanitizer import parse_line
 from src.Scale import Scale
 from src.Cacher import Cacher
@@ -42,7 +42,6 @@ def _dict_to_list(d: dict):
 
 class SearchEngine:
     def __init__(self, cacher: Cacher):
-        self._indexer: Indexer = Indexer()
         self.scale: Scale = Scale()
         self.cacher: Cacher = cacher
 
@@ -65,7 +64,7 @@ class SearchEngine:
         for file in os.scandir(folder):
             if file.is_file():
                 total_docs += 1
-                self._indexer.index_file(file.name, file.path, forward_index, invert_index, term_freq, doc_rank)
+                index_file(file.name, file.path, forward_index, invert_index, term_freq, doc_rank)
 
         # with invert_index calculated, we can calculate the inv_doc_freq of each unique word
         # where inv_doc_freq = number of documents with the word / total number of documents
