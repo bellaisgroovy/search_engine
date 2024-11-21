@@ -11,9 +11,8 @@ SOME FUNCTIONS OR THEIR SKELETONS HAVE BEEN PROVIDED
 HOWEVER, YOU ARE FREE TO MAKE ANY CHANGES YOU WANT IN THIS FILE
 AS LONG AS IT REMAINS COMPATIBLE WITH main.py and tester.py
 """
-from src.SearchEngine import SearchEngine
 
-_search_engine: SearchEngine = SearchEngine()
+
 
 
 # %%----------------------------------------------------------------------------
@@ -40,6 +39,8 @@ def print_result(result):
 # %%----------------------------------------------------------------------------
 from src.Crawling import crawl_folder
 
+
 # %%----------------------------------------------------------------------------
 def search(search_phrase, forward_index, invert_index, term_freq, inv_doc_freq, doc_rank):
-    return _search_engine.search(search_phrase, forward_index, invert_index, term_freq, inv_doc_freq, doc_rank)
+    from src.Searching import search
+    return search(search_phrase, invert_index, term_freq, inv_doc_freq, doc_rank)
