@@ -1,6 +1,6 @@
 from timeit import default_timer as timer
-from src.Sanitizer import parse_line
-from src.IndexUpdater import update_invert_index, update_forward_index, update_term_freq, update_doc_rank
+from src.common.Sanitizer import parse_line
+from src.crawling.IndexUpdater import update_invert_index, update_forward_index, update_term_freq, update_doc_rank
 
 
 def index_file(filename: str,

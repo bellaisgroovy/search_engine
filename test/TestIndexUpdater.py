@@ -1,5 +1,5 @@
 import unittest
-from src.IndexUpdater import update_invert_index, update_forward_index, update_doc_rank, update_term_freq, update_inv_doc_freq
+from src.crawling.IndexUpdater import update_invert_index, update_forward_index, update_doc_rank, update_term_freq, update_inv_doc_freq
 
 DOC_NAME = ""
 

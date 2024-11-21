@@ -1,5 +1,5 @@
 import unittest
-from src.Sanitizer import parse_line
+from src.common.Sanitizer import parse_line
 
 
 class TestSanitizer(unittest.TestCase):

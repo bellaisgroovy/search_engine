@@ -37,7 +37,7 @@ def print_result(result):
 
 
 # %%----------------------------------------------------------------------------
-from src.Crawling import crawl_folder
+from src.crawling.Crawling import crawl_folder
 
 
 # %%----------------------------------------------------------------------------

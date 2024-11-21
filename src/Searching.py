@@ -1,4 +1,4 @@
-from src.Sanitizer import parse_line
+from src.common.Sanitizer import parse_line
 
 
 def _fill_keys_with(keys: list[str], value: float):

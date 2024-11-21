@@ -1,6 +1,6 @@
 import unittest
 import os
-from src.Indexer import index_file
+from src.crawling.Indexer import index_file
 
 TESTING1212: str = "testing1212.txt"
 TESTING1212_PATH: str = os.path.join("test_search_dir", TESTING1212)

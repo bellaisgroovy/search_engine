@@ -1,5 +1,5 @@
-from src.Indexer import index_file
-from src.Cache import Cache
+from src.crawling.Indexer import index_file
+from src.common.Cache import Cache
 from os import scandir
 
 _cache_path = "cache"
