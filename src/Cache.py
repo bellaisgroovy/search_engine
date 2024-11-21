@@ -8,17 +8,17 @@ _inv_doc_freq_path = "inv_doc_freq.pase"
 _doc_rank_path = "doc_rank.pase"
 
 
-class Cacher:
+class Cache:
     def __init__(self, cache_path: str):
         self.cache_path: str = cache_path
 
-    def cache(self,
-              folder: str,
-              forward_index: dict[str, set[str]],
-              invert_index: dict[str, set[str]],
-              term_freq: dict[str, dict[str, float]],
-              inv_doc_freq: dict[str, float],
-              doc_rank: dict[str, float]):
+    def save(self,
+             folder: str,
+             forward_index: dict[str, set[str]],
+             invert_index: dict[str, set[str]],
+             term_freq: dict[str, dict[str, float]],
+             inv_doc_freq: dict[str, float],
+             doc_rank: dict[str, float]):
 
         dir_to_dump_in = os.path.join(self.cache_path, folder)
 

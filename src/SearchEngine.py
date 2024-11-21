@@ -2,7 +2,7 @@ import os
 from src.Indexer import index_file
 from src.Sanitizer import parse_line
 from src.Scale import weigh
-from src.Cacher import Cacher
+from src.Cache import Cache
 
 
 def _fill_keys_with(keys: list[str], value: float):
@@ -41,8 +41,8 @@ def _dict_to_list(d: dict):
 
 
 class SearchEngine:
-    def __init__(self, cacher: Cacher):
-        self.cacher: Cacher = cacher
+    def __init__(self, cacher: Cache):
+        self.cacher: Cache = cacher
 
     def crawl_folder(self,
                      folder: str,
@@ -70,7 +70,7 @@ class SearchEngine:
         for word in invert_index.keys():
             inv_doc_freq[word] = len(invert_index[word]) / total_docs
 
-        self.cacher.cache(folder, forward_index, invert_index, term_freq, inv_doc_freq, doc_rank)
+        self.cacher.save(folder, forward_index, invert_index, term_freq, inv_doc_freq, doc_rank)
 
     def search(self,
                search_phrase: str,
