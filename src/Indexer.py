@@ -1,5 +1,5 @@
 from timeit import default_timer as timer
-from Sanitizer import parse_line
+from src.Sanitizer import parse_line
 from src.IndexUpdater import IndexUpdater
 
 
