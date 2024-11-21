@@ -1,5 +1,4 @@
 from src.Sanitizer import parse_line
-from src.Scale import weigh
 
 
 def _fill_keys_with(keys: list[str], value: float):
@@ -23,6 +22,23 @@ def _find_docs_present(search_phrase: list[str], invert_index: dict[str, set[str
         docs_present = docs_present.intersection(word_docs_present)
 
     return docs_present
+
+def _weigh(search_phrase: list[str],
+          doc_name: str,
+          doc_rank: dict[str, float],
+          doc_term_freq: dict[str, float],
+          inv_doc_freq: dict[str, float]):
+
+    weight: float = doc_rank.get(doc_name)
+
+    for word in search_phrase:
+
+        word_weight: float = doc_term_freq.get(word) * inv_doc_freq.get(word)
+
+        weight = weight * word_weight
+
+    return weight
+
 
 
 def _dict_to_list(d: dict):
@@ -57,7 +73,7 @@ def search(search_phrase: str,
     docs_present: set[str] = _find_docs_present(search_phrase, invert_index)
 
     for doc_name in docs_present:
-        weight = weigh(search_phrase,
+        weight = _weigh(search_phrase,
                                   doc_name,
                                   doc_rank,
                                   term_freq.get(doc_name),

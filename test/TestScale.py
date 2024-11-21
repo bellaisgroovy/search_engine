@@ -1,5 +1,5 @@
 import unittest
-from src.Scale import weigh
+from src.Searching import _weigh
 
 
 class MyTestCase(unittest.TestCase):
@@ -11,7 +11,7 @@ class MyTestCase(unittest.TestCase):
         term_freq: dict[str, float] = {word: 5/100}  # 5/100 words in hi.txt are hello
         inv_doc_freq: dict[str, float] = {word: 1/2} # one of two documents say hello
 
-        weight: float = weigh(search_phrase, doc_name, doc_rank, term_freq, inv_doc_freq)
+        weight: float = _weigh(search_phrase, doc_name, doc_rank, term_freq, inv_doc_freq)
 
         expected_weight: float = 0.00025
         self.assertEqual(weight, expected_weight)  # add assertion here
