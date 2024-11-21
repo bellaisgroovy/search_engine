@@ -1,11 +1,10 @@
 from timeit import default_timer as timer
-from src.Sanitizer import Sanitizer
+from Sanitizer import parse_line
 from src.IndexUpdater import IndexUpdater
 
 
 class Indexer:
     def __init__(self):
-        self.sanitizer = Sanitizer()
         self.index_updater = IndexUpdater()
 
     def index_file(self,
@@ -31,7 +30,7 @@ class Indexer:
         with open(filepath, 'r', encoding="utf-8") as file:
             for line in file:
 
-                list_of_words: list[str] = self.sanitizer.parse_line(line)
+                list_of_words: list[str] = parse_line(line)
 
                 for word in list_of_words:
                     word_count += 1

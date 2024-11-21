@@ -1,6 +1,6 @@
 import os
 from src.Indexer import Indexer
-from src.Sanitizer import Sanitizer
+from src.Sanitizer import parse_line
 from src.Scale import Scale
 from src.Cacher import Cacher
 
@@ -43,7 +43,6 @@ def _dict_to_list(d: dict):
 class SearchEngine:
     def __init__(self, cacher: Cacher):
         self._indexer: Indexer = Indexer()
-        self._sanitizer: Sanitizer = Sanitizer()
         self.scale: Scale = Scale()
         self.cacher: Cacher = cacher
 
@@ -88,7 +87,7 @@ class SearchEngine:
         Then you multiply this value with that documents document-rank
         to arrive at a final weight for a given query, for every document.
         """
-        search_phrase: list[str] = self._sanitizer.parse_line(search_phrase)
+        search_phrase: list[str] = parse_line(search_phrase)
 
         if len(search_phrase) == 0:
             return []

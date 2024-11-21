@@ -39,24 +39,23 @@ def _remove_empty_words(list_of_words):
     return no_empties
 
 
-class Sanitizer:
-    def parse_line(self, line: str):
-        """
-        Parses a given line,
-        removes whitespaces, splits into list of sanitize words
-        Uses sanitize_word()
+def parse_line(line: str):
+    """
+    Parses a given line,
+    removes whitespaces, splits into list of sanitize words
+    Uses sanitize_word()
 
-        HINT: Consider using the "strip()" and "split()" function here
+    HINT: Consider using the "strip()" and "split()" function here
 
-        """
-        ascii_line: str = _remove_non_ascii(line)
+    """
+    ascii_line: str = _remove_non_ascii(line)
 
-        lowercase_line: str = ascii_line.lower()
+    lowercase_line: str = ascii_line.lower()
 
-        list_of_words: list[str] = lowercase_line.split()
+    list_of_words: list[str] = lowercase_line.split()
 
-        stripped_list: list[str] = _strip_specials_from_words(list_of_words)
+    stripped_list: list[str] = _strip_specials_from_words(list_of_words)
 
-        no_empty_words: list[str] = _remove_empty_words(stripped_list)
+    no_empty_words: list[str] = _remove_empty_words(stripped_list)
 
-        return no_empty_words
+    return no_empty_words
