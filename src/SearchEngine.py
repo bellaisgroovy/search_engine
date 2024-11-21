@@ -1,7 +1,7 @@
 import os
 from src.Indexer import index_file
 from src.Sanitizer import parse_line
-from src.Scale import Scale
+from src.Scale import weigh
 from src.Cacher import Cacher
 
 
@@ -42,7 +42,6 @@ def _dict_to_list(d: dict):
 
 class SearchEngine:
     def __init__(self, cacher: Cacher):
-        self.scale: Scale = Scale()
         self.cacher: Cacher = cacher
 
     def crawl_folder(self,
@@ -96,7 +95,7 @@ class SearchEngine:
         docs_present: set[str] = _find_docs_present(search_phrase, invert_index)
 
         for doc_name in docs_present:
-            weight = self.scale.weigh(search_phrase,
+            weight = weigh(search_phrase,
                                       doc_name,
                                       doc_rank,
                                       term_freq.get(doc_name),
