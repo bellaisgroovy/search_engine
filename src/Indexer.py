@@ -1,11 +1,9 @@
 from timeit import default_timer as timer
 from src.Sanitizer import parse_line
-from src.IndexUpdater import IndexUpdater
+from src.IndexUpdater import update_invert_index, update_forward_index, update_term_freq, update_doc_rank, update_inv_doc_freq
 
 
 class Indexer:
-    def __init__(self):
-        self.index_updater = IndexUpdater()
 
     def index_file(self,
                    filename: str,
@@ -39,13 +37,13 @@ class Indexer:
                     word_occurrences[word] = word_occurrences.get(word) or 0
                     word_occurrences[word] = word_occurrences.get(word) + 1
 
-                    self.index_updater.update_forward_index(forward_index, filename, word)
+                    update_forward_index(forward_index, filename, word)
 
-                    self.index_updater.update_invert_index(invert_index, word, filename)
+                    update_invert_index(invert_index, word, filename)
 
-        self.index_updater.update_term_freq(term_freq, word_occurrences, word_count, filename)
+        update_term_freq(term_freq, word_occurrences, word_count, filename)
 
-        self.index_updater.update_doc_rank(doc_rank, word_count, filename)
+        update_doc_rank(doc_rank, word_count, filename)
 
         end = timer()
         print("Time taken to index file: ", filename, " = ", end - start)
