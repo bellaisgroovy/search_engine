@@ -3,7 +3,13 @@
 Practical Algorithms 2024-25, University of Glasgow  
 Assessed Exercise 1  
   
-Submitted by: Bellatrix Dawson Hodgson, 2770706H  
+Submitted by: Bellatrix Dawson Hodgson, 2770706H
+
+# NOTE TO THE MARKER - file structure
+
+I wrote this in multiple files. This structure is maintained in the src directory.
+
+For your convenience, I also created a unified pa_search_engine.py at the top level. This is what `main.py` and `tester.py` call.
   
 # A: Complexity Analysis 
 
