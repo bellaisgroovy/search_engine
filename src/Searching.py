@@ -23,22 +23,20 @@ def _find_docs_present(search_phrase: list[str], invert_index: dict[str, set[str
 
     return docs_present
 
-def _weigh(search_phrase: list[str],
-          doc_name: str,
-          doc_rank: dict[str, float],
-          doc_term_freq: dict[str, float],
-          inv_doc_freq: dict[str, float]):
 
+def _weigh(search_phrase: list[str],
+           doc_name: str,
+           doc_rank: dict[str, float],
+           doc_term_freq: dict[str, float],
+           inv_doc_freq: dict[str, float]):
     weight: float = doc_rank.get(doc_name)
 
     for word in search_phrase:
-
         word_weight: float = doc_term_freq.get(word) * inv_doc_freq.get(word)
 
         weight = weight * word_weight
 
     return weight
-
 
 
 def _dict_to_list(d: dict):
@@ -51,6 +49,7 @@ def _dict_to_list(d: dict):
         result_tuples.append((key, d.get(key)))
 
     return result_tuples
+
 
 def search(search_phrase: str,
            invert_index: dict[str, set[str]],
@@ -74,10 +73,10 @@ def search(search_phrase: str,
 
     for doc_name in docs_present:
         weight = _weigh(search_phrase,
-                                  doc_name,
-                                  doc_rank,
-                                  term_freq.get(doc_name),
-                                  inv_doc_freq)
+                        doc_name,
+                        doc_rank,
+                        term_freq.get(doc_name),
+                        inv_doc_freq)
 
         result[doc_name] = weight
 
